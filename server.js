@@ -54,6 +54,8 @@ app.get('/', (req, res) => {
   // Use req.log (a `pino` instance) to log JSON:
   req.log.info({message: 'Hello from Node.js Starter Application!'});
   res.send('Hello from Node.js Starter Application! Welcome juancvilla');
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World!');
 });
 
 app.get('*', (req, res) => {
