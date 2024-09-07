@@ -52,9 +52,16 @@ app.use(require('pino-http')({logger: pino}));
 
 app.get('/', (req, res) => {
   // Use req.log (a `pino` instance) to log JSON:
-  req.log.info({message: 'Hello from Node.js Starter Application!'});
-  res.send('Hello from Node.js Starter Application! Welcome juancvilla');
-  res.send(req.url);
+  //req.log.info({message: 'Hello from Node.js Starter Application!'});
+  //res.send('Hello from Node.js Starter Application! Welcome juancvilla');
+  var http = require('http');
+  var fs = require('fs');
+  //Open a file on the server and return its content:
+  fs.readFile('demo.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
 });
 
 app.get('*', (req, res) => {
